@@ -1,12 +1,15 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import styled from 'styled-components';
 
   function Timer() {
+    const [seconds, setSeconds] = useState(0);
+
     useEffect(() => {
       console.log("Component Mounted - Timer Started...");
 
       const timerInterval = setInterval(() => {
         console.log("tick toc");
+        setSeconds(prev => prev + 1);
       }, 1000)
 
       return () => {
@@ -15,18 +18,10 @@ import styled from 'styled-components';
     }, []);
 
     return (
-      <Wrapper>
-        <h1>Timer started on mount</h1>
-      </Wrapper>
+        <h1>Seconds: {seconds}</h1>
     );
   }
 
-  const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    min-height: 100vh;
-  `;
+
 
 export default Timer;
