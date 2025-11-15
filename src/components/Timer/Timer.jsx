@@ -23,11 +23,16 @@ import styled from 'styled-components';
       setIsPaused(prev => !prev);
     }
 
+    function resetTimer() {
+      setSeconds(0);
+    }
+
 
     return (
         <>
           <h1>Seconds: {seconds}</h1>
-          <Button onClick={pauseToggle}>{isPaused ? "Unpause" : "Pause"}</Button>
+          <Button onClick={pauseToggle}>{isPaused ? "Start" : "Stop"}</Button>
+          <Button onClick={resetTimer}>Reset</Button>
         </>
     );
   }
