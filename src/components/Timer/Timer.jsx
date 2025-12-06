@@ -2,6 +2,23 @@ import React, { useEffect, useState }  from 'react';
 import styled from 'styled-components';
 
   function Timer() {
+    const {
+      seconds,
+      pauseToggle,
+      isPaused,
+      resetTimer
+    } = useTimer();
+
+    return (
+        <>
+          <h1>Seconds: {seconds}</h1>
+          <Button onClick={pauseToggle}>{isPaused ? "Start" : "Stop"}</Button>
+          <Button onClick={resetTimer}>Reset</Button>
+        </>
+    );
+  }
+
+  function useTimer() {
     const [seconds, setSeconds] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
@@ -27,14 +44,12 @@ import styled from 'styled-components';
       setSeconds(0);
     }
 
-
-    return (
-        <>
-          <h1>Seconds: {seconds}</h1>
-          <Button onClick={pauseToggle}>{isPaused ? "Start" : "Stop"}</Button>
-          <Button onClick={resetTimer}>Reset</Button>
-        </>
-    );
+    return {
+      seconds,
+      pauseToggle,
+      isPaused,
+      resetTimer
+    }
   }
 
   const Button = styled.button`
